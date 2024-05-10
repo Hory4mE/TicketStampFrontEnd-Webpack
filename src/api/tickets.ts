@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 import { resolve } from "path";
+import { QueryFunctionContext } from "@tanstack/react-query";
 
 export async function getAllTicket(): Promise<any> {
   await new Promise((resolve) => {
@@ -9,7 +10,7 @@ export async function getAllTicket(): Promise<any> {
   return tickets.data;
 }
 
-export async function createTicket(newTicketData: any): Promise<any> {
+export async function createTicket(newTicketData: any): Promise<void> {
   try {
     await new Promise((resolve) => {
       setTimeout(resolve, 1500);
@@ -19,9 +20,7 @@ export async function createTicket(newTicketData: any): Promise<any> {
       newTicketData
     );
     console.log(tickets);
-
-    return tickets;
   } catch (e) {
-    return e;
+    throw HttpStatusCode.BadRequest;
   }
 }
