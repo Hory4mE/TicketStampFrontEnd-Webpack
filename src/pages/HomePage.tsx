@@ -1,20 +1,16 @@
-import { FC, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { FC, useState } from "react";
 import {
   createTicket,
   getAllTicket,
   updateTicket,
   updateTicketStatus,
 } from "../api/tickets";
-import CreateTicketModal from "../components/createTicketModal";
-import NotiModal from "../components/updateTicketModal";
-import { ITickets } from "../components/ITickets";
-import UpdateDataModal from "../components/updateTicketDataModal";
 import TicketDeletionModal from "../components/confirmDeleteMocal";
-
-interface ticketProps {
-  tickets: ITickets[];
-}
+import CreateTicketModal from "../components/createTicketModal";
+import UpdateDataModal from "../components/updateTicketDataModal";
+import NotiModal from "../components/updateTicketModal";
+import { ITickets } from "../interfaces/ITickets";
 
 const HomePage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

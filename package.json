@@ -7,12 +7,15 @@
     "@tanstack/react-query": "^5.35.1",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/dotenv-webpack": "^7.0.7",
     "@types/node": "^20.12.10",
     "@types/react": "^18.3.1",
     "@types/webpack": "^5.28.5",
@@ -31,7 +34,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
   },
-  "scripts":{
+  "scripts": {
     "build": "webpack build",
     "dev": "webpack serve --open --mode=development"
   }

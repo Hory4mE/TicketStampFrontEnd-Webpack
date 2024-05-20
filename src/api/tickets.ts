@@ -1,13 +1,25 @@
-import axios, { AxiosError, HttpStatusCode } from "axios";
-import { resolve } from "path";
-import { QueryFunctionContext } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios";
 
 
 export async function getAllTicket(): Promise<any> {
   await new Promise((resolve) => {
     setTimeout(resolve, 1500);
   });
-  const tickets = await axios.get("http://localhost:5500/tickets");
+  console.log("JAUSDF : ", process.env.HOST);
+  // const tickets = await axios.get("http://localhost:5500/tickets");
+  const token = await axios.post(`http://${process.env.HOST}:${process.env.PORT}/v1/users/login`, {
+    "username": "username test2",
+    "password": "password test2"
+  }
+  )
+  console.log(token.data.token)
+  const tickets = await axios.get(`http://${process.env.HOST}:${process.env.PORT}/v1/tickets`,
+    {
+      headers: {
+        token: token.data.token,
+      }
+    }
+  );
   return tickets.data;
 }
 

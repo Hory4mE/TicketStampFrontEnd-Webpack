@@ -1,8 +1,10 @@
-import "webpack-dev-server";
-import path from "path";
+import Dotenv from 'dotenv-webpack';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
 import { Configuration, ProgressPlugin } from "webpack";
+import "webpack-dev-server";
+
 
 const config: Configuration = {
   mode: "development",
@@ -51,6 +53,7 @@ const config: Configuration = {
       new MiniCssExtractPlugin({
         filename: "static/css/[name].css",
       }),
+      new Dotenv(),
     ],
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".jsx"],
