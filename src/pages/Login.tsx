@@ -1,12 +1,12 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { login } from "../api/tickets";
 
 const Login: FC = () => {
+  const location = useLocation();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -22,7 +22,7 @@ const Login: FC = () => {
 
     try {
       await login(username, password);
-      navigate("/");
+      window.location.pathname = "/";
     } catch (err) {
       setError("Invalid username or password");
       console.error("Login error:", err);

@@ -1,18 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import { FC, useState } from "react";
-import {
-  createTicket,
-  getAllTicket,
-  updateTicket,
-  updateTicketStatus,
-} from "../api/tickets";
+import { FC, useEffect, useState } from "react";
+import { createTicket, getAllTicket, updateTicketStatus } from "../api/tickets";
 import TicketDeletionModal from "../components/confirmDeleteMocal";
 import CreateTicketModal from "../components/createTicketModal";
 import UpdateDataModal from "../components/updateTicketDataModal";
 import NotiModal from "../components/updateTicketModal";
 import { ITickets } from "../interfaces/ITickets";
+import useAuth from "../security/useAuth";
+import { checkAdmin } from "../utils/checkroles";
 
 const HomePage: FC = () => {
+  const { token } = useAuth();
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [updateStatusModal, setStatusUpdateModal] = useState(false);
   const [updateTicketModal, setUpdateTicketModal] = useState(false);
@@ -25,6 +24,12 @@ const HomePage: FC = () => {
     title: "",
     description: "",
   });
+
+  useEffect(() => {
+    if (checkAdmin(token) === true) {
+      setIsAdmin(true);
+    }
+  }, [token]);
 
   const {
     isLoading: isLoadingAllTicket,
@@ -59,25 +64,6 @@ const HomePage: FC = () => {
     console.log({
       ticket_id: ticketId,
       status,
-    });
-    refetchAllTicket();
-    setStatusUpdateModal(false);
-  };
-
-  const handleUpdateTicket = async (
-    ticketId: string,
-    title: string,
-    description: string
-  ) => {
-    await updateTicket({
-      ticket_id: ticketId,
-      title,
-      description,
-    });
-    console.log({
-      ticket_id: ticketId,
-      title,
-      description,
     });
     refetchAllTicket();
     setStatusUpdateModal(false);
@@ -161,12 +147,14 @@ const HomePage: FC = () => {
       >
         Refresh Tickets
       </button>
-      <button
-        className="px-4 py-2 mb-8 ml-4 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring focus:ring-blue-400"
-        onClick={() => setIsModalOpen(true)}
-      >
-        Create Tickets
-      </button>
+      {isAdmin && (
+        <button
+          className="px-4 py-2 mb-8 ml-4 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring focus:ring-blue-400"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Create Tickets
+        </button>
+      )}
 
       {isLoadingAllTicket && <p>Loading...</p>}
       {isErrorAllTicket && <p>Error occurred, please try again.</p>}

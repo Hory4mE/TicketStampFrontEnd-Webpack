@@ -57,7 +57,7 @@ export async function updateTicketStatus(newStatusData: {
     const id = ticket_id;
     const data = { status };
     const tickets = await axios.patch(
-      `http://${process.env.HOST}:${process.env.PORT}/v1/tickets/status/${id}`,
+      `http://${process.env.HOST}:${process.env.PORT}/v1/tickets/${id}/status`,
       data,
       {
         headers: {
@@ -128,6 +128,7 @@ export async function login(username: string, password: string) {
     console.log('Login successful');
     if (token) {
       localStorage.setItem("token", token.data.token)
+
     }
   } catch (e) {
 
