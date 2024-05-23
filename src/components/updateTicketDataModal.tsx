@@ -40,10 +40,10 @@ function UpdateDataModal({
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden w-96">
-        <div className="bg-gray-800 text-white p-6">
+        <div className="bg-grey-800 text-white p-6">
           <h2 className="text-xl font-bold">Edit Ticket</h2>
           <button
-            className="text-gray-400 hover:text-white absolute top-0 right-0 p-4"
+            className="text-grey-400 hover:text-white absolute top-0 right-0 p-4"
             onClick={onClose}
           >
             &times;
@@ -51,24 +51,24 @@ function UpdateDataModal({
         </div>
         <div className="p-6">
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-grey-700 text-sm font-bold mb-2">
               Update Title:
             </label>
             <input
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className="px-4 py-2 w-full border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+              className="px-4 py-2 w-full border border-grey-300 rounded-md bg-white text-grey-900 focus:outline-none focus:ring focus:ring-blue-400"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-grey-700 text-sm font-bold mb-2">
               Update Description:
             </label>
             <textarea
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
-              className="px-4 py-2 w-full h-32 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+              className="px-4 py-2 w-full h-32 border border-grey-300 rounded-md bg-white text-grey-900 focus:outline-none focus:ring focus:ring-blue-400"
             ></textarea>
           </div>
           <div className="flex justify-end">
@@ -81,7 +81,7 @@ function UpdateDataModal({
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md shadow hover:bg-gray-400"
+              className="px-6 py-2 bg-grey-300 text-grey-800 rounded-md shadow hover:bg-grey-400"
             >
               Close
             </button>

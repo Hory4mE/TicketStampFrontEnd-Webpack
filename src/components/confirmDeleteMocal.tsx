@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { deleteTicket } from "../api/tickets";
 import DismissModal from "./dismissModal";
 
@@ -51,10 +51,10 @@ const TicketDeletionModal: React.FC<TicketDeletionModalProps> = ({
 
       {/* Modal container */}
       <div className="relative bg-white rounded-lg shadow-lg overflow-hidden w-96">
-        <div className="bg-gray-800 text-white p-6">
+        <div className="bg-grey-800 text-white p-6">
           <h2 className="text-xl font-bold">Delete Ticket</h2>
           <button
-            className="text-gray-400 hover:text-white absolute top-0 right-0 p-4"
+            className="text-grey-400 hover:text-white absolute top-0 right-0 p-4"
             onClick={onClose}
           >
             &times;
@@ -73,7 +73,7 @@ const TicketDeletionModal: React.FC<TicketDeletionModalProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md shadow hover:bg-gray-400"
+              className="px-6 py-2 bg-grey-300 text-grey-800 rounded-md shadow hover:bg-grey-400"
             >
               Cancel
             </button>

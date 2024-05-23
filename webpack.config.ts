@@ -43,6 +43,10 @@ const config: Configuration = {
             },
           ],
         },
+        {
+          test: /\.(svg|jpg|jpeg|png|ttf|woff|eot|gif)$/,
+          type: 'asset/resource'
+        }
       ],
     },
     plugins: [

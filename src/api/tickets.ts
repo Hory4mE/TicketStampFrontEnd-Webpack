@@ -122,8 +122,8 @@ export async function deleteTicket(ticketId: { ticket_id: string }) {
 export async function login(username: string, password: string) {
   try {
     const token = await axios.post(`http://${process.env.HOST}:${process.env.PORT}/v1/users/login`, {
-      "username": "username test2",
-      "password": "password test2"
+      "username": username,
+      "password": password,
     })
     console.log('Login successful');
     if (token) {

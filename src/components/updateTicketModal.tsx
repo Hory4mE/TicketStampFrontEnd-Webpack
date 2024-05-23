@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
+import "@nipacloud/nc-design-system/style";
 import { useState } from "react";
-import { updateTicketStatus } from "../api/tickets";
 
 interface NotiModalProps {
   onClose: () => void;
@@ -20,10 +20,10 @@ function NotiModal({ onClose, tickets, updateTicketStatus }: NotiModalProps) {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50">
-      <div className="bg-black bg-opacity-50 p-8 rounded-lg shadow-lg">
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-grey-1000 bg-opacity-70">
+      <div className="bg-grey-900 bg-opacity-50 p-8 rounded-lg shadow-lg">
         <span
-          className="text-gray-500 text-2xl absolute top-0 right-0 cursor-pointer"
+          className="text-grey-500 text-2xl absolute top-0 right-0 cursor-pointer"
           onClick={onClose}
         >
           &times;
@@ -33,7 +33,7 @@ function NotiModal({ onClose, tickets, updateTicketStatus }: NotiModalProps) {
           <p className="text-white">Select new Status to update data</p>
           <p className="text-white">Select new status:</p>
           <select
-            className="px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring focus:ring-blue-400"
+            className="px-4 py-2 rounded-md border border-grey-300 bg-white text-grey-900 focus:outline-none focus:ring focus:ring-blue-400"
             onChange={(e) => handleEditSubmit(e)}
           >
             <option value={tickets.status}>{tickets.status}</option>

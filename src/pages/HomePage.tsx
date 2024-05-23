@@ -72,15 +72,15 @@ const HomePage: FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "PENDING":
-        return "bg-yellow-500";
+        return "bg-orange-150";
       case "IN_PROGRESS":
-        return "bg-purple-500";
+        return "bg-navy-150";
       case "COMPLETED":
-        return "bg-green-500";
+        return "bg-green-150";
       case "CANCELLED":
-        return "bg-red-500";
+        return "bg-red-150";
       default:
-        return "bg-gray";
+        return "bg-grey-150";
     }
   };
 
@@ -119,7 +119,7 @@ const HomePage: FC = () => {
               value={formData.title}
               onChange={handleInputChange}
               placeholder="Title"
-              className="border border-gray-300 rounded-md px-8 py-4 focus:outline-none focus:ring focus:ring-blue-400"
+              className="border border-grey-300 rounded-md px-8 py-4 focus:outline-none focus:ring focus:ring-blue-400"
             />
             <input
               type="text"
@@ -128,7 +128,7 @@ const HomePage: FC = () => {
               value={formData.description}
               onChange={handleInputChange}
               placeholder="Description"
-              className="border border-gray-300 rounded-md px-8 py-4 focus:outline-none focus:ring focus:ring-blue-400"
+              className="border border-grey-300 rounded-md px-8 py-4 focus:outline-none focus:ring focus:ring-blue-400"
             />
           </div>
           <div className="mt-8 mb-4 flex justify-between items-center">
@@ -147,7 +147,7 @@ const HomePage: FC = () => {
       >
         Refresh Tickets
       </button>
-      {isAdmin && (
+      {!isAdmin && (
         <button
           className="px-4 py-2 mb-8 ml-4 bg-green-500 text-white rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring focus:ring-blue-400"
           onClick={() => setIsModalOpen(true)}
@@ -160,7 +160,7 @@ const HomePage: FC = () => {
       {isErrorAllTicket && <p>Error occurred, please try again.</p>}
       <table className="w-full">
         <thead>
-          <tr className="bg-gray-800 text-white">
+          <tr className="bg-grey-600 text-white">
             <th className="px-4 py-4">#</th>
             <th className="px-4 py-4">Title</th>
             <th className="px-4 py-4">Description</th>
@@ -176,7 +176,7 @@ const HomePage: FC = () => {
           {allTicketData?.map(
             (ticket: ITickets, index: number) =>
               !ticket.is_delete && (
-                <tr key={index} className="bg-gray-900 text-white gap-[50px]">
+                <tr key={index} className="bg-grey-500 text-white gap-[50px]">
                   <td className="px-8 py-4">{ticket.ticket_id}</td>
                   <td className="px-8 py-4">{ticket.title}</td>
                   <td className="px-8 py-4">{ticket.description}</td>

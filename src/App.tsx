@@ -6,44 +6,43 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import ProtectedRoute from "./security/ProtectedRoute";
 import useAuth from "./security/useAuth";
-import "./styles/global.scss";
 
 const App: FC = () => {
   const { token, logout } = useAuth();
 
   return (
     <>
-      <nav className="bg-gray-800 p-8">
+      <nav className="bg-black_theme p-8">
         <div className="container mx-auto flex justify-between items-center">
           <div>
-            <Link to={"/"} className="text-white font-bold text-xl">
+            <Link to={"/"} className="  text-white font-bold text-xl">
               My Logo
             </Link>
           </div>
           <div className="flex space-x-8">
             <Link
               to={"/"}
-              className="text-white hover:text-gray-300 transition duration-300"
+              className="text-white hover:text-grey-300 transition duration-300"
             >
               Home
             </Link>
             <Link
               to={"/test"}
-              className="text-white hover:text-gray-300 transition duration-300"
+              className="text-white hover:text-grey-300 transition duration-300"
             >
               About
             </Link>
             {token ? (
               <button
                 onClick={logout}
-                className="text-white hover:text-gray-300 transition duration-300"
+                className="text-white hover:text-grey-300 transition duration-300"
               >
                 Logout
               </button>
             ) : (
               <Link
                 to="/login"
-                className="text-white hover:text-gray-300 transition duration-300"
+                className="text-white hover:text-grey-300 transition duration-300"
               >
                 Login
               </Link>

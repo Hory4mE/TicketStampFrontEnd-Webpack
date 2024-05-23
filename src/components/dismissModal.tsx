@@ -31,7 +31,7 @@ const DismissModal: React.FC<DismissModalProps> = ({
               &times;
             </span>
             <h2 className="text-xl font-semibold mb-4">{errorMsg}</h2>
-            <p className="text-gray-700 mb-4">
+            <p className="text-grey-700 mb-4">
               Cannot remove this Completed Ticket
             </p>
             <button

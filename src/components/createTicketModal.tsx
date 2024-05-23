@@ -28,7 +28,7 @@ const CreateTicketModal: React.FC<TicketModalProps> = ({
         
         {/* Close button */}
         <button
-          className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800 focus:outline-none"
+          className="absolute top-0 right-0 m-4 text-grey-600 hover:text-grey-800 focus:outline-none"
           onClick={onClose}
         >
           <svg

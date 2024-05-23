@@ -7,6 +7,8 @@ import AuthProvider from "./context/AuthContext";
 import { queryclient } from "./queryClient";
 import "./styles/global.scss";
 
+import "@nipacloud/nc-design-system/style";
+
 const root = ReactDOM.createRoot(document.querySelector("#app")!);
 
 root.render(
