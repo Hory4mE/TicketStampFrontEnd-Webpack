@@ -1,3 +1,4 @@
+import { NcButton } from "@nipacloud/nc-design-system-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FC } from "react";
 import { editCountry, getAllCountry } from "../api/countries";
@@ -23,7 +24,10 @@ const About: FC = () => {
   if (isLoading || isError) {
     return (
       <div className="text-6xl text-red-800 flex w-screen justify-center items-center text-center">
-        Loading ... {isError && "Error occurred, please try again."}
+        <NcButton type="text" loading>
+          Text
+        </NcButton>{" "}
+        {isError && "Error occurred, please try again."}
       </div>
     );
   }

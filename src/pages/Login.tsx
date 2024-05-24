@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { login } from "../api/tickets";
+import { validatePassword } from "../security/InputValidation";
 
 const Login: FC = () => {
   const location = useLocation();
@@ -21,11 +22,11 @@ const Login: FC = () => {
     setError(null); // Reset error state
 
     try {
+      validatePassword(password);
       await login(username, password);
       window.location.pathname = "/";
-    } catch (err) {
-      setError("Invalid username or password");
-      console.error("Login error:", err);
+    } catch (err: any) {
+      setError(err);
     }
   };
 

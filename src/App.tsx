@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import About from "./pages/About";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 import ProtectedRoute from "./security/ProtectedRoute";
 import useAuth from "./security/useAuth";
 
@@ -31,6 +32,12 @@ const App: FC = () => {
               className="text-white hover:text-grey-300 transition duration-300"
             >
               About
+            </Link>
+            <Link
+              to={"/payment"}
+              className="text-white hover:text-grey-300 transition duration-300"
+            >
+              Payment
             </Link>
             {token ? (
               <button
@@ -65,6 +72,14 @@ const App: FC = () => {
             element={
               <ProtectedRoute>
                 <About />
+              </ProtectedRoute>
+            }
+          />
+                    <Route
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <Payment />
               </ProtectedRoute>
             }
           />
