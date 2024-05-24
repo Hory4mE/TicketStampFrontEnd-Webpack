@@ -1,8 +1,13 @@
 import axios, { AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 export async function getAllTicket(): Promise<any> {
+
 
 
   const token: string = localStorage.getItem("token")!;
@@ -16,6 +21,7 @@ export async function getAllTicket(): Promise<any> {
         }
       }
     );
+    await delay(2000);
     return tickets.data;
 
   } else {
@@ -26,6 +32,8 @@ export async function getAllTicket(): Promise<any> {
         }
       }
     );
+    // Set up the next call after 2 seconds
+    await delay(2000);
     return tickets.data;
   }
 }
@@ -131,6 +139,6 @@ export async function login(username: string, password: string) {
 
     }
   } catch (e) {
-    
+
   }
 }

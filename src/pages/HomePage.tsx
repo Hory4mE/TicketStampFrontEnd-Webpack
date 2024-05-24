@@ -1,4 +1,10 @@
-import { NcButton, NcCard, NcCardBody, NcCardTitle } from "@nipacloud/nc-design-system-react";
+import {
+  NcAlert,
+  NcButton,
+  NcCard,
+  NcCardBody,
+  NcCardTitle,
+} from "@nipacloud/nc-design-system-react";
 import { useQuery } from "@tanstack/react-query";
 import { FC, useEffect, useState } from "react";
 import { createTicket, getAllTicket, updateTicketStatus } from "../api/tickets";
@@ -117,6 +123,7 @@ const HomePage: FC = () => {
               onChange={handleInputChange}
               placeholder="Title"
               className="border border-grey-300 rounded-md px-8 py-4 focus:outline-none focus:ring focus:ring-blue-400"
+              required
             />
             <input
               type="text"
@@ -153,8 +160,12 @@ const HomePage: FC = () => {
         </button>
       )}
 
-      {isLoadingAllTicket && <p>Loading...</p>}
-      {isErrorAllTicket && <p>Error occurred, please try again.</p>}
+      {isLoadingAllTicket && (
+        <NcButton type="text" loading>
+          Text
+        </NcButton>
+      )}
+      {isErrorAllTicket && <NcAlert>An Unexpected Error Occurred</NcAlert>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {allTicketData?.map(
@@ -165,28 +176,41 @@ const HomePage: FC = () => {
                   <div>{ticket.title}</div>
                 </NcCardTitle>
                 <NcCardBody>
-                  <p><strong>Description:</strong> {ticket.description}</p>
-                  <p><strong>Status:</strong></p>
+                  <p>
+                    <strong>Description:</strong> {ticket.description}
+                  </p>
+                  <p>
+                    <strong>Status:</strong>
+                  </p>
                   <button
                     onClick={() => {
                       setSelectedTicketId(ticket.ticket_id);
                       setStatusUpdateModal(true);
                     }}
-                    className={`rounded-md px-4 py-1 ${getStatusColor(ticket.status)} hover:opacity-75`}
+                    className={`rounded-md px-4 py-1 ${getStatusColor(
+                      ticket.status
+                    )} hover:opacity-75`}
                   >
                     {ticket.status}
                   </button>
-                  {updateStatusModal && selectedTicketId === ticket.ticket_id && (
-                    <NotiModal
-                      onClose={() => setStatusUpdateModal(false)}
-                      tickets={ticket.status}
-                      updateTicketStatus={(status: any) =>
-                        handleUpdateTicketStatus(ticket.ticket_id, status)
-                      }
-                    />
-                  )}
-                  <p><strong>Created Time:</strong> {formatTimeStamp(ticket.created_date)}</p>
-                  <p><strong>Latest Time:</strong> {formatTimeStamp(ticket.updated_date)}</p>
+                  {updateStatusModal &&
+                    selectedTicketId === ticket.ticket_id && (
+                      <NotiModal
+                        onClose={() => setStatusUpdateModal(false)}
+                        tickets={ticket.status}
+                        updateTicketStatus={(status: any) =>
+                          handleUpdateTicketStatus(ticket.ticket_id, status)
+                        }
+                      />
+                    )}
+                  <p>
+                    <strong>Created Time:</strong>{" "}
+                    {formatTimeStamp(ticket.created_date)}
+                  </p>
+                  <p>
+                    <strong>Latest Time:</strong>{" "}
+                    {formatTimeStamp(ticket.updated_date)}
+                  </p>
                   <div className="flex justify-end space-x-4 mt-4">
                     <NcButton
                       className="bg-green-500 text-white"
@@ -197,14 +221,15 @@ const HomePage: FC = () => {
                     >
                       Edit
                     </NcButton>
-                    {updateTicketModal && selectedTicketId === ticket.ticket_id && (
-                      <UpdateDataModal
-                        onClose={() => setUpdateTicketModal(false)}
-                        ticket={ticket}
-                        ticketId={ticket.ticket_id}
-                        updateTicketData={refetchAllTicket}
-                      />
-                    )}
+                    {updateTicketModal &&
+                      selectedTicketId === ticket.ticket_id && (
+                        <UpdateDataModal
+                          onClose={() => setUpdateTicketModal(false)}
+                          ticket={ticket}
+                          ticketId={ticket.ticket_id}
+                          updateTicketData={refetchAllTicket}
+                        />
+                      )}
                     <NcButton
                       className="bg-red-500 text-white"
                       onClick={() => {
@@ -214,14 +239,15 @@ const HomePage: FC = () => {
                     >
                       Delete
                     </NcButton>
-                    {confirmDeleteModal && selectedTicketId === ticket.ticket_id && (
-                      <TicketDeletionModal
-                        onClose={() => setConfirmDeleteModal(false)}
-                        ticket={ticket}
-                        ticketId={ticket.ticket_id}
-                        onDelete={refetchAllTicket}
-                      />
-                    )}
+                    {confirmDeleteModal &&
+                      selectedTicketId === ticket.ticket_id && (
+                        <TicketDeletionModal
+                          onClose={() => setConfirmDeleteModal(false)}
+                          ticket={ticket}
+                          ticketId={ticket.ticket_id}
+                          onDelete={refetchAllTicket}
+                        />
+                      )}
                   </div>
                 </NcCardBody>
               </NcCard>

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { login } from "../api/tickets";
-import { validatePassword } from "../security/InputValidation";
+import { validatePassword } from "../security/passwordValidation";
 
 const Login: FC = () => {
   const location = useLocation();
